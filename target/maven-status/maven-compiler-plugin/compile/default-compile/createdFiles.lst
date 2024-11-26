@@ -1,0 +1,10 @@
+Modelo\Controle.class
+Modelo\Variaveis.class
+Modelo\Estaticos.class
+com\mycompany\crudpessoasjsf\resources\JakartaEE10Resource.class
+Modelo\Validacao.class
+ManagedBeans\bgrIniciar.class
+com\mycompany\crudpessoasjsf\JakartaRestConfiguration.class
+Modelo\Serial.class
+DAL\VariaveisDAO.class
+DAL\HibernateUtil.class
