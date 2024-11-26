@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estação Climática - Seu Portal do Tempo</title>
+    <meta name="description" content="Estação Climática: seu portal completo para previsão do tempo, análises meteorológicas e informações climáticas atualizadas." />
+    <meta name="keywords" content="previsão do tempo, meteorologia, clima, temperatura, umidade, precipitação, vento, pressão atmosférica" />
+    <meta name="author" content="Ricardo, João Pedro, Guilherme, Monique" />
+    <style>
+      /* ===================
+        Variáveis
+        =================== */
+      :root {
+          /* Cards */
+          --superficie: rgba(139, 92, 246, 0.1);
+          --brilho: #8B5CF6;
+          --titulo: #A78BFA;
+          
+          /* Background */
+          --fundo0: #4c1986;
+          --fundo1: #0F172A;
+          --fundo2: #1E1B4B;
+          --radial: rgba(139, 92, 246, 0.15);
+
+          /* Textos */
+          --texto-primario: #F8FAFC;
+          --texto-secundario: #CBD5E1;
+
+          /* Bordas */
+          --border: rgba(139, 92, 246, 0.5);
+          --border-glow: 0 0 10px rgba(139, 92, 246, 0.5);
+
+          /* Sombras */
+          --sombra-base: 0 4px 6px rgba(139, 92, 246, 0.1);
+          --sombra-hover: 0 12px 24px rgba(139, 92, 246, 0.3);
+
+          --transicao: 0.3s ease-in-out;
+          --mobile: 840px;
+      }
+  
+      /* ===================
+        Regras Globais
+        =================== */
+      * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+      }
+
+      body {
+          background-color: var(--fundo0);
+          background-image: url("#{facesContext.externalContext.requestContextPath}/img/Blur.jpg");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          font-family: "Inter", system-ui, sans-serif;
+          color: var(--texto-primario);
+          position: relative;
+          overflow-x: hidden;
+      }
+  
+      /* ===================
+      Principal
+      =================== */
+      .titulo {
+          text-align: center;
+          margin-bottom: 40px;
+          font-size: 2.5rem;
+          color: var(--texto-primario);
+          font-weight: 700;
+          letter-spacing: -0.025em;
+          text-shadow: 0 0 15px var(--titulo);
+      }
+  
+      /* Container */
+      .dados-estacao {
+          display: flex;
+          gap: 24px;
+          margin-bottom: 30px;
+      }
+  
+      .card-base {
+          flex: 1;
+          padding: 24px;
+          background: var(--superficie);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border-radius: 16px;
+          text-align: center;
+          border: 1px solid var(--border);
+          box-shadow: var(--sombra-base);
+          min-width: 250px;
+          transition: all var(--transicao);
+          position: relative;
+          overflow: hidden;
+      }
+
+      /* Mouse */
+      .card-base:hover {
+          transform: translateY(-5px);
+          box-shadow: var(--sombra-hover), var(--border-glow);
+      }
+
+      .valor-medicao {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--titulo);
+          margin: 12px 0;
+          line-height: 1.2;
+          text-shadow: 0 0 10px var(--brilho);
+      }
+  
+      span {
+          display: block;
+          font-size: 1.1rem;
+          color: var(--texto-secundario);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-weight: 500;
+          margin-top: 8px;
+      }
+
+      /* ===================
+        Botões
+        =================== */
+
+      /* Container */
+      .botoes {
+          display: flex;
+          gap: 24px;
+          margin-bottom: 30px;
+      }
+  
+      .botao {
+          flex: 1;
+          padding: 24px;
+          background: var(--superficie);
+          color: var(--titulo);
+          font-weight: bold;
+          text-transform: uppercase;
+          min-width: 250px;
+          border-radius: 12px;
+          cursor: pointer;
+          border: 1px solid var(--border);
+          transition: all var(--transicao);
+          box-shadow: var(--sombra-base);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          position: relative;
+          overflow: hidden;
+      }
+
+      /* Mouse */
+      .botao:hover {
+          transform: translateY(-5px);
+          box-shadow: var(--sombra-hover), 0 0 15px var(--brilho);
+          background: var(--brilho);
+          color: var(--texto-primario);
+          border-color: var(--titulo);
+      }
+
+      /* Pressionando */
+      .botao:active {
+            transform: scale(0.95);
+        }
+
+      /* ===================
+        Responsividade
+        =================== */
+      @media (max-width: 840px) {
+          .dados-estacao, .botoes {
+              flex-direction: column;
+              gap: 16px;
+          }
+  
+          .titulo {
+              font-size: 2rem;
+          }
+  
+          .form-azul {
+              margin: 16px;
+              padding: 24px;
+          }
+  
+          .valor-medicao {
+              font-size: 2rem;
+          }
+      }
+  </style>
+</h:head>
+
+<h:body>
+
+    <h:form class="form-dados">
+        <h1 class="titulo">Estação Climática</h1>
+
+        <div class="dados-estacao">
+            <div class="card-base">
+                <div class="valor-medicao">
+                    <h:outputText value="#{bgrIniciar.temperatura}" />°C
+                </div>
+                <span><h:outputLabel class="outLabel"  />Temperatura</span>
+            </div>
+            <div class="card-base">
+                <div class="valor-medicao">
+                    <h:outputText value="#{bgrIniciar.umidade}" />%
+                </div>
+                <span><h:outputLabel class="outLabel" />Umidade</span>
+            </div>
+            <div class="card-base">
+                <div class="valor-medicao">
+                    <h:outputText value="#{bgrIniciar.precipitacao}" />
+                </div>
+                <span><h:outputLabel class="outLabel" />Precipitação</span>
+            </div>
+        </div>
+    </h:form>
+
+    <!-- Container dos botões de controle -->
+    <h:form class="form-botoes">
+        <div class="botoes">
+
+                <h:commandButton class="botao" value="Iniciar" action="#{bgrIniciar.ativarSalvamento}" />
+
+                 <h:commandButton class="botao" value="Parar" action="#{bgrIniciar.pausarSalvamento}" /> 
+           
+
+        </div>
+    </h:form>
+    <a id="pararButton" style="display:none" href="#"></a>
+
+
+    <script type="text/javascript">
+        setInterval(function() {
+            window.location.href = window.location.pathname; // Recarrega usando GET
+        }, 30000);
+    </script>
+</h:body>
+
+</html>
+
+<!-- <a href="">aaaaaaaaaaaaaaaaaaa</a> </button> -->
